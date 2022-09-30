@@ -1,0 +1,10 @@
+Some Important Notes Regarding the Application:
+
+1. When you open up this project, you will see there is a DatabaseStorage class which is responsible for storing data regarding 
+     customer. It works in my localhost without any password. Only user name(root) and the database is MySQL. Therefore, if you
+     want to make this database work, you just need to download XAMPP Server with a user name and create a database and table that 
+     includes 9 attributes(can be seen from my private data member inside Customer.java class) for customer. 
+
+2. I have provided couple of snapshots in case you could not set up the database just to demonstate that everything functions 
+     properly. 
+   
