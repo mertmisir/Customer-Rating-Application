@@ -26,16 +26,12 @@ public class Customer {
         try {
 
             if(origin.equals("EU")) {
-                origin.equals("EU");
                 R = 1; // Rating offset R is 1 whenever the customer's origin is EU
             } else if(origin.equals("US/CA")) {
-                origin.equals("US/CA");
                 R = 2; // Rating offset R is 2 whenever the customer's origin is US/CA
             } else if(origin.equals("Europe (None-EU)")) {
-                origin.equals("Europe (None-EU)");
                 R = 3; // Rating offset R is 3 whenever the customer's origin is Europe (None-EU)
             } else if (origin.equals("Others")) {
-                origin.equals("Others");
                 R = 4; // Rating offset R is 4 whenever the customer's origin is Others
             } else {
                 throw new Exception("You have entered the country of origin wrong!");
@@ -73,20 +69,11 @@ public class Customer {
     public void setResidence(String residence) {
         try {
 
-            if(residence.equals("EU")) {
-                residence.equals("EU");
-            } else if(residence.equals("US/CA")) {
-                residence.equals("US/CA");
-            } else if(residence.equals("Europe (None-EU)")) {
-                residence.equals("Europe (None-EU)");
-            } else if (residence.equals("Others")) {
-                residence.equals("Others");
+            if(residence.equals("EU") || residence.equals("US/CA") || (residence.equals("Europe (None-EU)") || residence.equals("Others"))) {
+                this.residence = residence;
             } else {
                 throw new Exception("You have entered the residence wrong!");
             }
-
-            this.residence = residence;
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -115,8 +102,9 @@ public class Customer {
         LocalDate currentDate = LocalDate.now(); // get the current date in (y,m,d) format
         Integer AGE = currentDate.getYear() - dateOfBirth.getYear(); //in order to calculate the customer's AGE value
         rating = (Math.sqrt(0.33 * 3.14 * R) + Math.sqrt(0.1 * AGE) + Math.pow(1 - R, 2)) / (0.25 * (1 + R));
+        Double previousRating = rating;
 
-        //set the customer rating according to the conditions below:
+        //set the customer final rating according to the conditions below:
         if(origin.equals("EU") && residence.equals("US/CA") && (AGE < 75)) {
             rating += rating * 0.05;
         } else if(origin.equals("EU") && !residence.equals("US/CA") && !residence.equals("EU") && (AGE < 75)) {
@@ -140,12 +128,11 @@ public class Customer {
         }
 
         // to check the final rating as it should not be less than 1 or greater than 10:
-        Double finalRating = rating;
-        if(finalRating > 1 && finalRating < 10) {
-            return finalRating;
+        if(rating > 1 && rating < 10) {
+            return rating;
         } else {
             System.out.println("Final rating of this customer either exceed 10 or less than 1!");
-            return rating;
+            return previousRating;
         }
     }
 

@@ -149,7 +149,7 @@ public class MainClass {
 
         System.out.println("====================================================");
 
-        //testing condition 8 in PDF
+        //testing condition 8 in PDF/*
         Customer c11 = new Customer();
         c11.setID(1010);
         c11.setUserName("Leonardo Da Vinci");
@@ -160,6 +160,8 @@ public class MainClass {
         c11.setCreationDate();
         System.out.println("Customer profile created on: " + c11.getCreationDate());
         System.out.println(c11.getUserName() + "'s rating: " + c11.getRating());
+
+        System.out.println("====================================================");
 
         DatabaseStorage dbStorage = new DatabaseStorage(); //if Customer Table gets the customer details successfully!
         try {
@@ -174,6 +176,7 @@ public class MainClass {
             dbStorage.insertCustomerToDatabase(c8);
             dbStorage.insertCustomerToDatabase(c9);
             dbStorage.insertCustomerToDatabase(c10);
+            dbStorage.insertCustomerToDatabase(c11);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
